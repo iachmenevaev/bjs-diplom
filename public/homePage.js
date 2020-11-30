@@ -9,12 +9,17 @@ ApiConnector.current((callback) => {
         ProfileWidget.showProfile(callback.data)}});
 //Получение текущих курсов валюты
 const ratesBoard = new RatesBoard();
-ApiConnector.getStocks((callback) => {
+function getStock(){
+    ApiConnector.getStocks((callback)=>{
     if (callback.success === true){
         ratesBoard.clearTable();
         ratesBoard.fillTable(callback.data);
-    }});
- //  Операции с деньгами
+        }
+       })
+
+}
+    setInterval(getStock,5000);
+    //  Операции с деньгами
  const moneyManager = new MoneyManager;
  moneyManager.addMoneyCallback =  data => ApiConnector.addMoney (data,(callback) =>  { 
     if (callback.success === true){
@@ -69,4 +74,3 @@ moneyManager.sendMoneyCallback = data => ApiConnector.transferMoney(data,(callba
             favoritesWidget.setMessage(callback.success,callback.error);
         }}); 
     
-       
