@@ -18,7 +18,7 @@ function getStock(){
        })
 
 }
-    setInterval(getStock,5000);
+    setInterval(getStock,60000);
     //  Операции с деньгами
  const moneyManager = new MoneyManager;
  moneyManager.addMoneyCallback =  data => ApiConnector.addMoney (data,(callback) =>  { 
